@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="w-screen h-screen">
+        <div class="w-full h-12 text-2xl font-semibold text-white flex justify-evenly items-center bg-purple-800">
+            Fetched train data (using API)
+            <a href="" class="border-4 border-slate-800 bg-gray-200 text-black rounded-lg">Refresh</a>
+        </div>
+        <div class="w-full p-1 h-[calc(100%-3rem-7rem-3rem)] bg-purple-400 flex justify-center">
+            <div class="w-11/12 p-2 h-full border-2 overflow-y-scroll">
+                <table class="border-2 w-full">
+                    <thead>
+                        <tr class="text-center">
+                            <th class="border-2">Train Number</th>
+                            <th class="border-2">Train Name</th>
+                            <th class="border-2">Source Code</th>
+                            <th class="border-2">Destination Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr class="text-center">
+                            <td class="border-2">12025</td>
+                            <td class="border-2">Pune - Secunderabed Shatabdi</td>
+                            <td class="border-2">PUNE</td>
+                            <td class="border-2">SC</td>
+                        </tr> -->
+                        <% train_data_documents_mongoDB.forEach(function(doc) { %>
+                            <tr>
+                                <td class="border-2"><%= doc.train_number %></td>
+                                <td class="border-2"><%= doc.train_name %></td>
+                                <td class="border-2"><%= doc.source_code %></td>
+                                <td class="border-2"><%= doc.destination_code %></td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="w-full h-12 text-2xl font-semibold text-white text-center bg-purple-800">
+            Insert new train data (using API)
+        </div>
+        <div class="w-full h-28 bg-purple-400">
+            <form action="/" method="POST" class="flex justify-evenly">
+                <div>
+                    <div>
+                        <label for="tno">Train number</label>
+                        <input name="tno" type="number" required>
+                        <label for="tname">Train name</label>
+                        <input name="tname" type="text" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="scode">Source Code</label>
+                        <input name="scode" type="text" required>
+                        <label for="dcode">Destination Code</label>
+                        <input name="dcode" type="text" required>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="p-2 w-28 border-4 border-slate-800 bg-gray-200 text-xl font-bold text-black rounded-lg">
+                        Insert
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
